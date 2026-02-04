@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мем-анализатор текста</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            text-align: center;
+            margin-top: 20px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .results {
+            margin-top: 30px;
+        }
+        
+        .analysis {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .analysis h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .memes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .meme-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .meme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .meme-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .meme-info {
+            padding: 15px;
+        }
+        
+        .meme-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .meme-description {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Мем-анализатор</h1>
+        <p class="subtitle">Введите текст, и AI подберёт подходящие мемы</p>
+        
+        <textarea id="textInput" placeholder="Напишите что-нибудь... Например: 'Когда наконец-то пятница, но впереди ещё весь рабочий день'"></textarea>
+        
+        <button id="analyzeBtn" onclick="analyzeText()">Анализировать и найти мемы</button>
+        
+        <div id="loading" class="loading" style="display: none;">
+            ⏳ Анализирую текст и ищу мемы...
+        </div>
+        
+        <div id="results" class="results" style="display: none;">
+            <div class="analysis">
+                <h3>📊 Анализ текста:</h3>
+                <p id="analysisText"></p>
+            </div>
+            
+            <h3>🎭 Подобранные мемы:</h3>
+            <div id="memes" class="memes"></div>
+        </div>
+    </div>
+
+    <script>
+        async function analyzeText() {
+            const text = document.getElementById('textInput').value.trim();
+            
+            if (!text) {
+                alert('Введите текст для анализа!');
+                return;
+            }
+            
+            const btn = document.getElementById('analyzeBtn');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            
+            try {
+                // Анализируем текст через Claude API
+                const response = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-20250514",
+                        max_tokens: 1000,
+                        messages: [{
+                            role: "user",
+                            content: `Проанализируй этот текст и подбери 4-6 подходящих мемов или постироничных образов. 
+                            
+Текст: "${text}"
+
+Ответь ТОЛЬКО в JSON формате без markdown и других символов:
+{
+  "analysis": "краткий анализ настроения и темы текста",
+  "memes": [
+    {
+      "query": "поисковый запрос для мема на английском",
+      "title": "название мема",
+      "description": "почему этот мем подходит"
+    }
+  ]
+}`
+                        }]
+                    })
+                });
+                
+                const data = await response.json();
+                const content = data.content.find(c => c.type === "text")?.text || "";
+                
+                // Парсим JSON ответ
+                const result = JSON.parse(content);
+                
+                // Показываем анализ
+                document.getElementById('analysisText').textContent = result.analysis;
+                
+                // Получаем мемы через Unsplash (как прокси для изображений)
+                const memesContainer = document.getElementById('memes');
+                memesContainer.innerHTML = '';
+                
+                for (const meme of result.memes) {
+                    // Используем Unsplash API для получения релевантных изображений
+                    const imageUrl = `https://source.unsplash.com/300x300/?${encodeURIComponent(meme.query)},meme,funny`;
+                    
+                    const card = document.createElement('div');
+                    card.className = 'meme-card';
+                    card.innerHTML = `
+                        <img src="${imageUrl}" alt="${meme.title}" loading="lazy">
+                        <div class="meme-info">
+                            <div class="meme-title">${meme.title}</div>
+                            <div class="meme-description">${meme.description}</div>
+                        </div>
+                    `;
+                    
+                    memesContainer.appendChild(card);
+                }
+                
+                results.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при анализе. Проверьте консоль для деталей.');
+            } finally {
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        }
+        
+        // Позволяем отправлять по Ctrl+Enter
+        document.getElementById('textInput').addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                analyzeText();
+            }
+        });
+    </script>
+</body>
+</html>

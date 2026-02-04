@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Валентинка♡</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Doodle decorations -->
+    <div class="doodle-hearts"></div>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-container">
+        <img src="- Find & Share on GIPHY.gif" alt="Loading..." class="loading-gif">
+      </div>
+    </div>
+
+    <!-- Mini-Game 1: Math Problem -->
+    <div id="minigame1-container" style="display: none;">
+      <div class="minigame-window">
+        <div class="corner-doodle top-left">✿</div>
+        <div class="corner-doodle top-right">✿</div>
+        <div class="corner-doodle bottom-left">♡</div>
+        <div class="corner-doodle bottom-right">♡</div>
+        
+        <h2 class="minigame-title">
+          <span class="title-doodle">~</span>
+          порєшай тут поки 
+          <span class="title-doodle">~</span>
+        </h2>
+        
+        <div class="minigame-content">
+          <p class="minigame-question">розв'яжи приклад:</p>
+          <div class="math-problem">0,7 + 0,5 = ?</div>
+          
+          <div class="minigame-input-wrapper">
+            <input type="text" id="math-answer" class="minigame-input" placeholder="твоя відповідь...">
+          </div>
+          
+          <button class="btn minigame-btn" id="math-submit">
+            <span class="btn-text">перевірити ✧</span>
+          </button>
+          
+          <div id="math-feedback" class="feedback-message"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini-Game 2: Song Lyrics -->
+    <div id="minigame2-container" style="display: none;">
+      <div class="minigame-window">
+        <div class="corner-doodle top-left">✿</div>
+        <div class="corner-doodle top-right">✿</div>
+        <div class="corner-doodle bottom-left">♡</div>
+        <div class="corner-doodle bottom-right">♡</div>
+        
+        <h2 class="minigame-title">
+          <span class="title-doodle">~</span>
+          ну це халява по моєму
+          <span class="title-doodle">~</span>
+        </h2>
+        
+        <div class="minigame-content">
+          <p class="minigame-question">допиши слова пісні:</p>
+          <div class="lyrics-container">
+            <p class="lyrics-line">Смарагдове небо</p>
+            <p class="lyrics-line">Чекає на <input type="text" id="word1" class="lyrics-input" placeholder="?"></p>
+            <p class="lyrics-line">Я йду до тебе</p>
+            <p class="lyrics-line">Я йду <input type="text" id="word2" class="lyrics-input" placeholder="?"></p>
+          </div>
+          
+          <button class="btn minigame-btn" id="lyrics-submit">
+            <span class="btn-text">перевірити ✧</span>
+          </button>
+          
+          <div id="lyrics-feedback" class="feedback-message"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Envelope Screen -->
+    <div id="envelope-container" style="display: none;">
+      <div class="envelope-doodle">
+        <img src="envelope.png" alt="Envelope" class="envelope-img">
+      </div>
+      <p class="envelope-text">✧ тицяй ✧</p>
+      <div class="doodle-hearts-small">
+        <span>♡</span><span>♡</span><span>♡</span>
+      </div>
+    </div>
+
+    <!-- Letter Screen -->
+    <div id="letter-container">
+      <div class="letter-window">
+        <!-- Doodle border decorations -->
+        <div class="corner-doodle top-left">✿</div>
+        <div class="corner-doodle top-right">✿</div>
+        <div class="corner-doodle bottom-left">♡</div>
+        <div class="corner-doodle bottom-right">♡</div>
+        
+        <h1 id="letter-title">
+          <span class="title-doodle">~</span>
+          будеш моєю валентинкою?
+          <span class="title-doodle">~</span>
+        </h1>
+
+        <div class="cat-container">
+          <img src="image1.jpeg" class="cat" id="letter-cat" alt="cute cat" />
+          <div class="sparkles">
+            <span class="sparkle">✧</span>
+            <span class="sparkle">✧</span>
+            <span class="sparkle">✧</span>
+          </div>
+        </div>
+
+        <div class="buttons" id="letter-buttons">
+          <button class="btn yes-btn">
+            <span class="btn-text">так!! ♡</span>
+            <div class="btn-doodle"></div>
+          </button>
+
+          <div class="no-wrapper">
+            <button class="btn no-btn">
+              <span class="btn-text">не...</span>
+              <div class="btn-doodle"></div>
+            </button>
+            <div class="hover-message" id="hover-message"></div>
+          </div>
+        </div>
+
+        <!-- No Counter -->
+        <div class="no-counter" id="no-counter" style="display: none;">
+          <span class="counter-doodle">♡</span> 
+          спроб сказати "ні": <span id="no-count">0</span> 
+          <span class="counter-doodle">♡</span>
+        </div>
+
+        <div id="final-content" style="display: none;">
+          <div class="success-banner">
+            <div class="banner-hearts">
+              <span>♡</span><span>♡</span><span>♡</span>
+            </div>
+            <p class="final-text">
+              <strong>ульот</strong><br>
+            </p>
+          </div>
+          
+          <!-- Final GIF that appears after 5 seconds -->
+          <div id="final-gif-container" style="display: none;">
+            <img src="final.gif" alt="celebration" class="final-gif" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confetti-container"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~/portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="ascii-header">
+ ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ 
+ ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗
+ ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║
+ ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║
+ ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝
+ ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ 
+    </div>
+
+    <section>
+        <div class="terminal-prompt">cat about.txt<span class="cursor"></span></div>
+        <h2>About Me</h2>
+        <p>
+            I'm Roman Velimovskyi, an ambitious student who is starting a journey in web development and actively building 
+            a strong portfolio. I focus on simple and clear tasks, paying close attention to details and 
+            clean structure. I don't take on overly complex projects — instead, I prefer doing smaller 
+            jobs carefully and responsibly, delivering exactly what the client expects.
+        </p>
+        <p>
+            I work with HTML/CSS, basic JavaScript and php, simple websites and landing pages, UI tweaks, 
+            layout fixes, and small improvements. My approach is centered on quality over quantity, 
+            ensuring every project meets expectations.
+        </p>
+    </section>
+
+    <section>
+        <div class="terminal-prompt">ls -la skills/</div>
+        <h2>Skills</h2>
+        <div class="skill-grid">
+            <div class="skill-item">html</div>
+            <div class="skill-item">html5</div>
+            <div class="skill-item">css</div>
+            <div class="skill-item">javascript</div>
+            <div class="skill-item">php</div>
+            <div class="skill-item">bootstrap</div>
+            <div class="skill-item">wordpress</div>
+            <div class="skill-item">firebase</div>
+            <div class="skill-item">e-commerce</div>
+            <div class="skill-item">eating pizza</div>
+            <div class="skill-item">sipping coffee</div>
+        </div>
+    </section>
+
+    <section>
+        <div class="terminal-prompt">cat languages.txt</div>
+        <h2>Languages</h2>
+        <p>
+            <strong>English:</strong> Conversational<br>
+            <strong>Ukrainian:</strong> Native or Bilingual<br>
+            <strong>Russian:</strong> Fluent<br>
+            <strong>Polish:</strong> Basic
+        </p>
+    </section>
+
+    <section>
+        <div class="terminal-prompt">cat projects/*.md</div>
+        <h2>Projects</h2>
+        
+        <div class="project">
+            <h3>Recap Website</h3>
+            <p>
+                A digital time capsule capturing memories and milestones from 2025. An interactive
+                journey through personal moments, achievements, and experiences that made the year
+                special. Features timeline visualization and memory cards with nostalgic aesthetics.
+            </p>
+            <div class="tech-stack">HTML5, CSS, JavaScript</div>
+        </div>
+
+        <div class="project">
+            <h3>Diary (Notion-like)</h3>
+            <p>
+                A minimalist note-taking and journaling application inspired by Notion. Clean interface
+                for organizing thoughts, tasks, and daily reflections. Features markdown support,
+                drag-and-drop organization, and persistent local storage.
+            </p>
+            <div class="tech-stack">HTML5, CSS, JavaScript, LocalStorage</div>
+        </div>
+
+        <div class="project">
+            <h3>Readme - Online Bookstore</h3>
+            <p>
+                Full-featured e-commerce platform for book lovers developed as a diploma project.
+                Complete bookstore solution with catalog browsing, search functionality, shopping cart,
+                and user authentication. Responsive design for seamless reading discovery.
+            </p>
+            <div class="tech-stack">PHP, HTML, CSS, JavaScript, Bootstrap, WordPress, Firebase, MySQL</div>
+        </div>
+    </section>
+
+    <section>
+        <div class="terminal-prompt">whoami</div>
+        <h2>Experience</h2>
+        <p>
+            <strong>Yuriy Fedkovich Chernivtsi National University</strong><br>
+            Bachelor of Computer Science (BCompSc), Computer Science<br>
+            2025-2028 (expected)
+        </p>
+        <p>
+            <strong>BFCPEP</strong><br>
+            Bachelor of Computer Science (BCompSc), Software Engineering<br>
+            2021-2025
+        </p>
+        <p>
+            <strong>Freelance Web Developer</strong><br>
+            Building simple, responsive websites and landing pages for clients.
+            Specializing in clean, detail-oriented web solutions with focus on quality execution.
+        </p>
+    </section>
+
+    <section>
+        <div class="terminal-prompt">grep -r "contact" .</div>
+        <h2>Contact</h2>
+        <p>Let's build something together. Reach out through any of these channels:</p>
+        <div class="contact-links">
+            <a href="mailto:romanvelimovskiy@gmail.com">Email</a>
+            <a href="https://github.com/pompei1i" target="_blank">GitHub</a>
+            <a href="https://t.me/pompush" target="_blank">Telegram</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>~/portfolio $ echo "Thanks for visiting" | figlet</p>
+        <p>&copy; 2026 · Crafted with code</p>
+    </footer>
+</body>
+</html>

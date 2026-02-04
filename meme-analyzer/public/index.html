@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Мем-анализатор | AI-powered</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Мем-анализатор</h1>
+            <p class="subtitle">Введите текст, и Claude AI подберёт подходящие мемы</p>
+            <div class="status" id="status">
+                <span class="status-indicator"></span>
+                <span class="status-text">Проверка соединения...</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="input-section">
+                <textarea 
+                    id="textInput" 
+                    placeholder="Например: 'Когда наконец-то пятница, но впереди ещё весь рабочий день' или 'Я: буду спать рано. Я в 3 ночи: смотрю видео про то, как делают кирпичи'"
+                    rows="6"
+                ></textarea>
+                
+                <div class="quick-examples">
+                    <span class="examples-label">Быстрые примеры:</span>
+                    <button class="example-btn" onclick="setExample('Когда говоришь что устал, а тебе отвечают: \"А ты попробуй не уставать\"')">Про усталость</button>
+                    <button class="example-btn" onclick="setExample('POV: ты в 3 часа ночи гуглишь \"почему я слышу музыку когда идёт вода\"')">3 часа ночи</button>
+                    <button class="example-btn" onclick="setExample('Я: надо заняться делом. Мой мозг: а давай вспомним все стыдные моменты из детства')">Прокрастинация</button>
+                </div>
+                
+                <button id="analyzeBtn" class="analyze-btn" onclick="analyzeText()">
+                    <span class="btn-text">Анализировать и найти мемы</span>
+                    <span class="btn-icon">🔍</span>
+                </button>
+            </div>
+            
+            <div id="loading" class="loading" style="display: none;">
+                <div class="loader"></div>
+                <p>⏳ Claude анализирует текст и подбирает мемы...</p>
+            </div>
+            
+            <div id="error" class="error" style="display: none;">
+                <div class="error-icon">⚠️</div>
+                <div class="error-content">
+                    <h3>Ошибка</h3>
+                    <p id="errorMessage"></p>
+                </div>
+            </div>
+            
+            <div id="results" class="results" style="display: none;">
+                <div class="analysis-card">
+                    <h3>📊 Анализ от Claude AI</h3>
+                    <div class="analysis-content">
+                        <p id="analysisText" class="analysis-text"></p>
+                        <div class="metadata">
+                            <span class="tag" id="moodTag"></span>
+                            <div class="themes" id="themesContainer"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="memes-section">
+                    <h3>🎭 Подобранные мемы</h3>
+                    <div id="memes" class="memes-grid"></div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by <strong>Claude AI</strong> (Anthropic) • Создано с ❤️</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

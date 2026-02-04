@@ -1,0 +1,236 @@
+body { font-family: 'Montserrat', sans-serif; }
+.serif { font-family: 'Playfair Display', serif; }
+
+.nav-link {
+    position: relative;
+    color: #475569;
+    transition: color 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -8px;
+    left: 0;
+    background-color: #065f46;
+    transition: width 0.3s ease;
+}
+.nav-link:hover {
+    color: #065f46;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* hero visuals */
+.hero-mq {
+    background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.2)),
+    /* replace the bg image */ 
+                url('#');
+    background-size: cover;
+    background-position: center;
+}
+
+.medicine-wheel-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    display: flex;
+}
+.medicine-wheel-bar div { flex: 1; }
+
+/* grid system */
+.mq-tile {
+    cursor: pointer;
+    background-color: #0f172a;
+    overflow: hidden;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.tile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.5s cubic-bezier(0.2, 1, 0.22, 1), opacity 0.8s ease;
+}
+
+.tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.1) 80%);
+    transition: all 0.6s ease;
+}
+
+.tile-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2.5rem;
+    width: 100%;
+    z-index: 10;
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.22, 1);
+}
+
+.tile-description {
+    opacity: 0;
+    height: 0;
+    transition: all 0.4s ease;
+}
+
+/* hover anim trigger */
+.mq-tile:hover .tile-img {
+    transform: scale(1.15);
+    opacity: 0.6;
+}
+
+.mq-tile:hover .tile-overlay {
+    background: linear-gradient(to top, rgba(6, 95, 70, 0.95) 0%, rgba(6, 95, 70, 0.8) 100%);
+}
+
+.mq-tile:hover .tile-content {
+    transform: translateY(-20px);
+}
+
+.mq-tile:hover .tile-description {
+    opacity: 1;
+    height: auto;
+    margin-top: 1rem;
+}
+
+/* seven teachings pills */
+.teaching-pill {
+    padding: 0.75rem 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #475569;
+    transition: 0.3s ease;
+}
+.teaching-pill:hover {
+    background-color: #065f46;
+    border-color: #065f46;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.2, 1, 0.22, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* form focus animation */
+input::placeholder {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+}
+
+select {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* base Styling */
+body { font-family: 'Montserrat', sans-serif; }
+
+/* form Elements */
+.form-input {
+    width: 100%;
+    border-bottom: 2px solid #f1f5f9;
+    background: transparent;
+    padding: 12px 0;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.form-input:focus {
+    border-color: #065f46;
+}
+
+textarea.form-input {
+    border: 2px solid #f1f5f9;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+/* title system */
+.mq-tile {
+    cursor: pointer;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.tile-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.22, 1), opacity 0.6s ease;
+}
+
+.tile-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+.tile-content {
+    position: absolute; bottom: 0; left: 0;
+    padding: 2.5rem; z-index: 10;
+    transition: transform 0.5s ease;
+}
+
+.tile-description { opacity: 0; height: 0; transition: 0.4s ease; }
+
+.mq-tile:hover .tile-img { transform: scale(1.1); opacity: 0.6; }
+.mq-tile:hover .tile-overlay { background: rgba(6, 95, 70, 0.85); }
+.mq-tile:hover .tile-content { transform: translateY(-10px); }
+.mq-tile:hover .tile-description { opacity: 1; height: auto; margin-top: 10px; }
+
+/* reveal Logic */
+.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+.reveal.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.medicine-wheel-bar {
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 8px; display: flex;
+}
+.medicine-wheel-bar div { flex: 1; }
+
+.hidden { display: none !important; }
+
+.text-nowrap { white-space: nowrap; }
+
+#successState {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .max-w-2xl {
+        flex-direction: column;
+    }
+    .border-r {
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+}
