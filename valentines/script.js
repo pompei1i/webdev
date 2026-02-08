@@ -26,9 +26,6 @@ const lyricsSubmit = document.getElementById("lyrics-submit");
 const lyricsFeedback = document.getElementById("lyrics-feedback");
 
 // Variables
-let noClickCount = 0;
-let yesScale = 1;
-let isYesGrowing = false;
 let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 // Hide loading screen and show first mini-game
@@ -41,7 +38,7 @@ setTimeout(() => {
 function createFloatingDoodleHeart() {
     const heart = document.createElement('div');
     heart.className = 'floating-heart-doodle';
-    const heartSymbols = ['♡', '❤', '💕', '💗', '💖'];
+    const heartSymbols = ['♡', '♥', '💕', '💗', '💖'];
     heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
     heart.style.left = Math.random() * 100 + '%';
     heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
@@ -62,8 +59,8 @@ for (let i = 0; i < 8; i++) {
 mathSubmit.addEventListener("click", () => {
     const answer = mathAnswer.value.trim().toLowerCase();
     
-    // Accept various forms of "бєлка" or squirrel
-    const correctAnswers = ['бєлка', 'белка', 'бєлочка', 'білка', 'bilka'];
+    // Accept various forms of "білка" or squirrel
+    const correctAnswers = ['білка', 'белка', 'білочка', 'бiлка', 'bilka'];
     const isCorrect = correctAnswers.some(correct => answer.includes(correct));
     
     if (isCorrect) {
@@ -77,7 +74,7 @@ mathSubmit.addEventListener("click", () => {
     } else {
         // Check if they entered a number like 1.2
         if (answer === '1.2' || answer === '1,2' || answer === '12') {
-            mathFeedback.textContent = 'ну, математично харош, але тут інша відповідь (рижий пухнастий друган 🐿️)';
+            mathFeedback.textContent = 'ну, математично харош, але тут інша відповідь (рижий пухнастий другань 🐿️)';
             mathFeedback.className = 'feedback-message incorrect';
         } else {
             mathFeedback.textContent = 'треш... давай по новой!';
@@ -111,13 +108,13 @@ lyricsSubmit.addEventListener("click", () => {
             envelope.style.display = 'block';
         }, 1500);
     } else if (!correct1 && !correct2) {
-        lyricsFeedback.textContent = 'оба нє!!! ура. спробуй ще раз))';
+        lyricsFeedback.textContent = 'оба ні!!! ура. спробуй ще раз))';
         lyricsFeedback.className = 'feedback-message incorrect';
     } else if (!correct1) {
-        lyricsFeedback.textContent = 'перше слово нє, друге да! ✓';
+        lyricsFeedback.textContent = 'перше слово ні, друге да! ✔';
         lyricsFeedback.className = 'feedback-message incorrect';
     } else {
-        lyricsFeedback.textContent = 'друге слово нє, перше да! ✓';
+        lyricsFeedback.textContent = 'друге слово ні, перше да! ✔';
         lyricsFeedback.className = 'feedback-message incorrect';
     }
 });
@@ -169,44 +166,16 @@ if (!isMobile) {
     });
 }
 
-// Move NO button on touch start (mobile)
+// Move NO button on touch start (mobile) - PREVENT DEFAULT TO AVOID CLICK
 if (isMobile) {
     noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault(); // Prevent the touch from turning into a click
         moveNoButton();
-    }, { passive: true });
+    }, { passive: false });
 }
 
-// Grow YES button when NO clicked
-noBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    noClickCount++;
-    noCount.textContent = noClickCount;
-    
-    if (noClickCount === 1) {
-        noCounter.style.display = 'block';
-    }
-    
-    yesScale += 0.25;
-    
-    if (!isYesGrowing) {
-        isYesGrowing = true;
-        yesBtn.classList.add('growing');
-        yesBtn.style.position = "fixed";
-        yesBtn.style.top = "50%";
-        yesBtn.style.left = "50%";
-        yesBtn.style.transformOrigin = "center center";
-    }
-    
-    yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-    
-    // Shake animation
-    noBtn.style.animation = 'shake 0.3s';
-    setTimeout(() => {
-        noBtn.style.animation = '';
-    }, 300);
-});
+// REMOVED: The click event listener for NO button that was causing conflicts
+// The NO button now ONLY moves, it doesn't trigger any other actions
 
 // Shake keyframe
 const style = document.createElement('style');
@@ -221,7 +190,7 @@ document.head.appendChild(style);
 
 // Kawaii confetti
 function createKawaiiConfetti() {
-    const symbols = ['♡', '❤', '✿', '✧', '☆', '★', '♪', '(ノ◕ヮ◕)ノ*:・゚✧'];
+    const symbols = ['♡', '♥', '✿', '✧', '☆', '★', '♪', '(ノ◕ヮ◕)ノ*:・゚✧'];
     const colors = ['#ffb3d9', '#ff69b4', '#ffd6e8', '#ff91c7', '#ffc0e3'];
     
     for (let i = 0; i < 60; i++) {
