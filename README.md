@@ -1,3 +1,3 @@
 my recent projects in web development
 
-hope u enjou it :)
+hope u enjoy it :)
